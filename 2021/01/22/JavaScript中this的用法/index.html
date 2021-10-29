@@ -1,0 +1,507 @@
+<!--
+                   ___====-_  _-====___
+             _--^^^#####//      \\#####^^^--_
+          _-^##########// (    ) \\##########^-_
+         -############//  |\^^/|  \\############-
+       _/############//   (@::@)   \\############\_
+      /#############((     \\//     ))#############\
+     -###############\\    (oo)    //###############-
+    -#################\\  / VV \  //#################-
+   -###################\\/      \//###################-
+  _#/|##########/\######(   /\   )######/\##########|\#_
+  |/ |#/\#/\#/\/  \#/\##\  |  |  /##/\#/  \/\#/\#/\#| \|
+  `  |/  V  V  `   V  \#\| |  | |/#/  V   '  V  V  \|  '
+     `   `  `      `   / | |  | | \   '      '  '   '
+                      (  | |  | |  )
+                     __\ | |  | | /__
+                    (vvv(VVV)(VVV)vvv)
+                         神兽保佑
+                        代码无BUG!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="../css/theme-pace.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shaobro.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="摄影：蓝眸&amp;#8194;&amp;#8194;峨眉山&amp;#8194;&amp;#8194;2020-01-17 前言this是javascript中的一个关键字。它是函数运行时，在函数体内部自动生成的一个对象，当然，只能在函数体内部使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中this的用法">
+<meta property="og:url" content="https://shaobro.github.io/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="别林小筑">
+<meta property="og:description" content="摄影：蓝眸&amp;#8194;&amp;#8194;峨眉山&amp;#8194;&amp;#8194;2020-01-17 前言this是javascript中的一个关键字。它是函数运行时，在函数体内部自动生成的一个对象，当然，只能在函数体内部使用。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://shaobro.github.io/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/bg_01.png">
+<meta property="article:published_time" content="2021-01-22T06:46:35.000Z">
+<meta property="article:modified_time" content="2021-03-02T09:36:11.000Z">
+<meta property="article:author" content="蓝眸">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaobro.github.io/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/bg_01.png">
+
+<link rel="canonical" href="https://shaobro.github.io/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JavaScript中this的用法 | 别林小筑</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+
+    <header class="header header-view" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-cont"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">别林小筑</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">web前端</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i><span>首页</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i><span>Tags</span></a>
+
+  </li>
+        <li class="menu-item menu-item-列表">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i><span>列表</span></a>
+
+  </li>
+        <li class="menu-item menu-item-关于博主">
+
+    <a href="/intro" rel="section"><i class="fa fa-archive fa-fw"></i><span>关于博主</span></a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friend" rel="section"><i class="fa fa-archive fa-fw"></i><span>友情链接</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+<div class="header-weather">
+    <div class="header-weather-cont">
+       <iframe width="350" scrolling="no" height="70" frameborder="0" allowtransparency="true" src="https://i.tianqi.com?c=code&id=37&icon=4&site=12" style="color:#555;"></iframe>
+    </div>
+</div>
+<div class="header-author">
+    <div>
+    <img class="site-author-image" itemprop="image" alt="蓝眸"
+      src="/images/laji02.png">
+    </div>
+    
+  <div class="author-name">蓝眸</div>
+</div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript中this的用法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-22 14:46:35" itemprop="dateCreated datePublished" datetime="2021-01-22T14:46:35+08:00">2021-01-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/bg_01.png" alt="峨眉山" title="峨眉山"></p>
+<p><font style="color:#999999;font-size:14px;">摄影：蓝眸&#8194;&#8194;峨眉山&#8194;&#8194;2020-01-17</font></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>this是javascript中的一个关键字。<br>它是函数运行时，在函数体内部自动生成的一个对象，当然，只能在函数体内部使用。</p>
+<a id="more"></a>
+
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function text()&#123;</span><br><span class="line">    this.name &#x3D; &#39;蓝眸&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上段代码中，函数test运行时,内部会自动生成一个this对象可以使用。<br>那么，this的值是什么?</p>
+<p>函数的不同使用场合，this有不同的值。总的来说，this就是函数运行时所在的环境对象。下面分四种情况，详细讨论this的用法。</p>
+<p>情况一:纯粹的函数调用<br>这是函数的最通常用法，属于全局性调用，因此this就代表全局对象。看下面这段代码，它的运行结果是”蓝眸”。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; &quot;蓝眸&quot;;</span><br><span class="line">function test()&#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();  &#x2F;&#x2F; 蓝眸</span><br></pre></td></tr></table></figure></div>
+
+<p>情况二：作为对象方法调用</p>
+<p>函数还可以作为某个对象的方法调用，这时this就指 这个上级对象。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">    console.log(this.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj &#x3D; &#123;&#125;;</span><br><span class="line">obj.x &#x3D; 1;</span><br><span class="line">obj.m &#x3D; test;</span><br><span class="line"></span><br><span class="line">obj.m();  &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure></div>
+
+<p>情况三： 作为构造函数调用</p>
+<p>所谓构造函数，就是通过这个函数，可以生成一个新对象。这时，this就指这个新对象。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">    this.x &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line">var obj &#x3D; new test();</span><br><span class="line">console.log(obj.x); &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure></div>
+<p>运行结果为1。为了表明这时this不是全局对象，我们对代码做一些修改:</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var x &#x3D; 2;</span><br><span class="line">function test()&#123;</span><br><span class="line">    this.x &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj &#x3D; new test();</span><br><span class="line">console.log(x); &#x2F;&#x2F; 2</span><br></pre></td></tr></table></figure></div>
+
+<p>运行结果为2，表明全局变量x的值根本没变。</p>
+<p>情况四: apply的调用</p>
+<p>apply()是函数的一个方法，作用是改变函数的调用对象。它的第一个参数就表示改变后的调用这个函数的对象。因此，这时this指的就是这第一个参数。<br>apply()的参数为空时，默认调用全局对象。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var x &#x3D; 0;</span><br><span class="line">function test()&#123;</span><br><span class="line">    console.log(this.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj &#x3D; &#123;&#125;;</span><br><span class="line">obj.x &#x3D; 1;</span><br><span class="line">obj.m &#x3D; test;</span><br><span class="line">obj.m.apply();  &#x2F;&#x2F; 0</span><br></pre></td></tr></table></figure></div>
+
+<p>如果把最后一行代码修改为</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.m.apply(obj); &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure></div>
+
+<p>运行结果就变成了1，证明这时this代表的是对象obj;</p>
+
+    </div>
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束&nbsp;<i class="fa fa-paw"></i>&nbsp;感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+    
+    
+    
+        <div class="reward-container">
+  <div>请我吃包辣条吧~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      <div style="display: inline-block;">
+        <img src="/images/weixin.png" alt="蓝眸 微信">
+        <p>微信</p>
+      </div>
+      <div style="display: inline-block;">
+        <img src="/images/zfb.png" alt="蓝眸 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/14/JavaScript%E6%95%B0%E7%BB%84API%E5%85%A8%E9%9B%86/" rel="prev" title="JavaScript数组API全集">
+      <i class="fa fa-chevron-left"></i> JavaScript数组API全集
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/25/JavaScript%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="next" title="JavaScript深浅拷贝">
+      JavaScript深浅拷贝 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蓝眸"
+      src="/images/laji02.png">
+  <img src="../images/author_name.png" />
+  <div class="site-description" itemprop="description">各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蓝眸</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+ <canvas id="canvas"></canvas>
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript">
+    var windowWidth = $(window).width();
+  if (windowWidth > 480) {
+    document.write('<script type="text/javascript" src="../js/snow.js"><\/script>');
+  }
+</script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

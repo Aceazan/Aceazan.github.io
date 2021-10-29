@@ -1,0 +1,495 @@
+<!--
+                   ___====-_  _-====___
+             _--^^^#####//      \\#####^^^--_
+          _-^##########// (    ) \\##########^-_
+         -############//  |\^^/|  \\############-
+       _/############//   (@::@)   \\############\_
+      /#############((     \\//     ))#############\
+     -###############\\    (oo)    //###############-
+    -#################\\  / VV \  //#################-
+   -###################\\/      \//###################-
+  _#/|##########/\######(   /\   )######/\##########|\#_
+  |/ |#/\#/\#/\/  \#/\##\  |  |  /##/\#/  \/\#/\#/\#| \|
+  `  |/  V  V  `   V  \#\| |  | |/#/  V   '  V  V  \|  '
+     `   `  `      `   / | |  | | \   '      '  '   '
+                      (  | |  | |  )
+                     __\ | |  | | /__
+                    (vvv(VVV)(VVV)vvv)
+                         神兽保佑
+                        代码无BUG!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="../css/theme-pace.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shaobro.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言&amp;#8194;&amp;#8194;现在大多app都有一键登录的功能，我们的项目当然也得有，于是去翻了翻一键登录&amp;#8194;&amp;#8194;官方文档。好家伙，又发现新大陆了。让我们先来看一下dcloud对一件登录的描述吧… 描述&amp;#8194;&amp;#8194;uni一键登录是Dcloud联合个推公司推出的，整合了三大运营商网关认证能力的服务。通过运营商的底层SDK，实现App端无需短信验证码直接获取手机号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uni-app使用一键登录">
+<meta property="og:url" content="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/index.html">
+<meta property="og:site_name" content="别林小筑">
+<meta property="og:description" content="前言&amp;#8194;&amp;#8194;现在大多app都有一键登录的功能，我们的项目当然也得有，于是去翻了翻一键登录&amp;#8194;&amp;#8194;官方文档。好家伙，又发现新大陆了。让我们先来看一下dcloud对一件登录的描述吧… 描述&amp;#8194;&amp;#8194;uni一键登录是Dcloud联合个推公司推出的，整合了三大运营商网关认证能力的服务。通过运营商的底层SDK，实现App端无需短信验证码直接获取手机号">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_03.png">
+<meta property="og:image" content="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_01.png">
+<meta property="og:image" content="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_04.png">
+<meta property="og:image" content="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_05.png">
+<meta property="article:published_time" content="2021-09-29T09:34:09.000Z">
+<meta property="article:modified_time" content="2021-10-29T03:43:23.929Z">
+<meta property="article:author" content="蓝眸">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_03.png">
+
+<link rel="canonical" href="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>uni-app使用一键登录 | 别林小筑</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+
+    <header class="header header-view" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-cont"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">别林小筑</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">web前端</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i><span>首页</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i><span>Tags</span></a>
+
+  </li>
+        <li class="menu-item menu-item-列表">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i><span>列表</span></a>
+
+  </li>
+        <li class="menu-item menu-item-关于博主">
+
+    <a href="/intro" rel="section"><i class="fa fa-archive fa-fw"></i><span>关于博主</span></a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friend" rel="section"><i class="fa fa-archive fa-fw"></i><span>友情链接</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+<div class="header-weather">
+    <div class="header-weather-cont">
+       <iframe width="350" scrolling="no" height="70" frameborder="0" allowtransparency="true" src="https://i.tianqi.com?c=code&id=37&icon=4&site=12" style="color:#555;"></iframe>
+    </div>
+</div>
+<div class="header-author">
+    <div>
+    <img class="site-author-image" itemprop="image" alt="蓝眸"
+      src="/images/laji02.png">
+    </div>
+    
+  <div class="author-name">蓝眸</div>
+</div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          uni-app使用一键登录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-09-29 17:34:09" itemprop="dateCreated datePublished" datetime="2021-09-29T17:34:09+08:00">2021-09-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-29 11:43:23" itemprop="dateModified" datetime="2021-10-29T11:43:23+08:00">2021-10-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#8194;&#8194;现在大多app都有一键登录的功能，我们的项目当然也得有，于是去翻了翻<br><a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/univerify">一键登录</a>&#8194;&#8194;官方文档。好家伙，又发现新大陆了。让我们先来看一下dcloud对一件登录的描述吧…</p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>&#8194;&#8194;<a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/univerify">uni一键登录</a>是Dcloud联合个推公司推出的，整合了三大运营商网关认证能力的服务。通过运营商的底层SDK，实现App端无需短信验证码直接获取手机号，也就是很多主流App都提供的一键登录功能。</p>
+<a id="more"></a>
+<p>&#8194;&#8194;<a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/univerify">uni一键登录</a>是替代短信验证登录的下一代登录验证方式，能消除现有短信模式等待时间长、操作频繁和容易泄露的痛点。</p>
+<p>·支持版本：HbuilderX 3.0+<br>·支持项目类型：uni-app的App端，5+App, Wap2App<br>·支持系统平台：Android，iOS<br>·支持运营商：中国移动，中国联通，中国电信</p>
+<h4 id="1、开通服务"><a href="#1、开通服务" class="headerlink" title="1、开通服务"></a>1、开通服务</h4><p>开发者需要到<a target="_blank" rel="noopener" href="https://dev.dcloud.net.cn/">Dcloud开发者中心</a>申请开通一键登录。<br><img src="/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_03.png" alt="开通一键登录" title="开通一键登录"><br>详细步骤可以参见<a target="_blank" rel="noopener" href="https://ask.dcloud.net.cn/article/37965">开通一键登录服务详解</a>，这里就不细说了。</p>
+<h4 id="2、创建云函数"><a href="#2、创建云函数" class="headerlink" title="2、创建云函数"></a>2、创建云函数</h4><p>首先需要在<a target="_blank" rel="noopener" href="https://unicloud.dcloud.net.cn/home">uniCloud</a>创建云函数，前端通过一键登录获取到openid和access_token，传给后端，后端再带着这两项参数通过云函数的url获取到手机号码。</p>
+<p>1、如下图所示，在项目新建云服务<br><img src="/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_01.png" alt="&#39;新建云服务&#39;" title="新建云服务"></p>
+<p>2、然后在生成的uniCloud/cloudfunctions目录下新建getPhoneNumber目录然后在getPhoneNumber目创建index.js<br>写下如下代码：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 下面仅展示客户端使用post方式发送content-type为application&#x2F;json请求的场景</span><br><span class="line">exports.main &#x3D; async(event) &#x3D;&gt; &#123;</span><br><span class="line">  let body &#x3D; event.body</span><br><span class="line">  if(event.isBase64Encoded) &#123;</span><br><span class="line">    body &#x3D; Buffer.from(body,&#39;base64&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">  const &#123;</span><br><span class="line">    access_token,</span><br><span class="line">    openid</span><br><span class="line">  &#125; &#x3D; JSON.parse(body)</span><br><span class="line">  const res &#x3D; await uniCloud.getPhoneNumber(&#123;</span><br><span class="line">      provider: &#39;univerify&#39;,</span><br><span class="line">	  appid: &#39;__UNI__xxxx&#39;, &#x2F;&#x2F; DCloud appid，不同于callFunction方式调用，使用云函数Url化需要传递DCloud appid参数！！！</span><br><span class="line">      apiKey: &#39;xxxxxx&#39;, &#x2F;&#x2F; 在开发者中心开通服务并获取apiKey</span><br><span class="line">      apiSecret: &#39;xxxxxxx&#39;, &#x2F;&#x2F; 在开发者中心开通服务并获取apiSecret</span><br><span class="line">      access_token: access_token,</span><br><span class="line">      openid: openid</span><br><span class="line">  &#125;)</span><br><span class="line">  console.log(res); &#x2F;&#x2F; res里包含手机号</span><br><span class="line">  &#x2F;&#x2F; 如果数据库不在uniCloud上，可以通过 uniCloud.httpclient API，将手机号通过http方式传递给其他服务器的接口，详见：https:&#x2F;&#x2F;uniapp.dcloud.net.cn&#x2F;uniCloud&#x2F;cf-functions?id&#x3D;httpclient</span><br><span class="line"></span><br><span class="line">  return &#123;  &#x2F;&#x2F; 不建议把完整手机号返回给前端</span><br><span class="line">    code: 0,</span><br><span class="line">    message: &#39;获取手机号成功&#39;,</span><br><span class="line">	phoneNumber: res.phoneNumber</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>最后将云函数部署到云空间就ok啦。</p>
+<h4 id="3、一键登录的使用"><a href="#3、一键登录的使用" class="headerlink" title="3、一键登录的使用"></a>3、一键登录的使用</h4><p>Dcloud目前提供了两种样式分别为全屏和半屏(默认半屏)，如图：</p>
+<p>全屏<br><img src="/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_04.png" alt="全屏" title="全屏"><br>半屏<br><img src="/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/bg_05.png" alt="半屏" title="半屏"></p>
+<p>调用uni.login时设置univerifyStyle中的fullScreen属性值为true即可:</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uni.login(&#123;</span><br><span class="line">    provider: &#39;univerify&#39;,</span><br><span class="line">    univerifyStyle: &#123; </span><br><span class="line">            fullScreen: true</span><br><span class="line">        &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+
+<p>好了话不多说，让我们来看看这一键登录到底怎么用的：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">uni.login(&#123;</span><br><span class="line">    provider: &#39;univerify&#39;,</span><br><span class="line">    uniiverifyStyle:&#123;</span><br><span class="line">        &#123;  </span><br><span class="line">    &quot;fullScreen&quot;: false, &#x2F;&#x2F; 是否全屏显示，默认值： false</span><br><span class="line">    &quot;backgroundColor&quot;: &quot;#ffffff&quot;,  &#x2F;&#x2F; 授权页面背景颜色，默认值：#ffffff</span><br><span class="line">    &quot;backgroundImage&quot;: &quot;&quot;, &#x2F;&#x2F; 全屏显示的背景图片，默认值：&quot;&quot; （仅支持本地图片，只有全屏显示时支持）  </span><br><span class="line">    &quot;icon&quot;: &#123;  </span><br><span class="line">        &quot;path&quot;: &quot;static&#x2F;xxx.png&quot; &#x2F;&#x2F; 自定义显示在授权框中的logo，仅支持本地图片 默认显示App logo   </span><br><span class="line">    &#125;,  </span><br><span class="line">    &quot;phoneNum&quot;: &#123;  </span><br><span class="line">        &quot;color&quot;: &quot;#202020&quot;  &#x2F;&#x2F; 手机号文字颜色 默认值：#202020  </span><br><span class="line">    &#125;,  </span><br><span class="line">    &quot;slogan&quot;: &#123;  </span><br><span class="line">        &quot;color&quot;: &quot;#BBBBBB&quot;  &#x2F;&#x2F;  slogan 字体颜色 默认值：#BBBBBB  </span><br><span class="line">    &#125;,  </span><br><span class="line">    &quot;authButton&quot;: &#123;  </span><br><span class="line">        &quot;normalColor&quot;: &quot;#3479f5&quot;, &#x2F;&#x2F; 授权按钮正常状态背景颜色 默认值：#3479f5  </span><br><span class="line">        &quot;highlightColor&quot;: &quot;#2861c5&quot;,  &#x2F;&#x2F; 授权按钮按下状态背景颜色 默认值：#2861c5（仅ios支持）  </span><br><span class="line">        &quot;disabledColor&quot;: &quot;#73aaf5&quot;,  &#x2F;&#x2F; 授权按钮不可点击时背景颜色 默认值：#73aaf5（仅ios支持）  </span><br><span class="line">        &quot;textColor&quot;: &quot;#ffffff&quot;,  &#x2F;&#x2F; 授权按钮文字颜色 默认值：#ffffff  </span><br><span class="line">        &quot;title&quot;: &quot;本机号码一键登录&quot;, &#x2F;&#x2F; 授权按钮文案 默认值：“本机号码一键登录”  </span><br><span class="line">        &quot;borderRadius&quot;: &quot;24px&quot;    &#x2F;&#x2F; 授权按钮圆角 默认值：&quot;24px&quot; （按钮高度的一半）</span><br><span class="line">    &#125;,  </span><br><span class="line">    &quot;otherLoginButton&quot;: &#123;  </span><br><span class="line">        &quot;visible&quot;: true, &#x2F;&#x2F; 是否显示其他登录按钮，默认值：true  </span><br><span class="line">        &quot;normalColor&quot;: &quot;&quot;, &#x2F;&#x2F; 其他登录按钮正常状态背景颜色 默认值：透明 </span><br><span class="line">        &quot;highlightColor&quot;: &quot;&quot;, &#x2F;&#x2F; 其他登录按钮按下状态背景颜色 默认值：透明 </span><br><span class="line">        &quot;textColor&quot;: &quot;#656565&quot;, &#x2F;&#x2F; 其他登录按钮文字颜色 默认值：#656565  </span><br><span class="line">        &quot;title&quot;: &quot;其他登录方式&quot;, &#x2F;&#x2F; 其他登录方式按钮文字 默认值：“其他登录方式”  </span><br><span class="line">        &quot;borderColor&quot;: &quot;&quot;,  &#x2F;&#x2F;边框颜色 默认值：透明（仅iOS支持）  </span><br><span class="line">        &quot;borderRadius&quot;: &quot;0px&quot; &#x2F;&#x2F; 其他登录按钮圆角 默认值：&quot;24px&quot; （按钮高度的一半）</span><br><span class="line">    &#125;,  </span><br><span class="line">    &quot;privacyTerms&quot;: &#123;  </span><br><span class="line">        &quot;defaultCheckBoxState&quot;:true, &#x2F;&#x2F; 条款勾选框初始状态 默认值： true</span><br><span class="line">        &quot;uncheckedImage&quot;:&quot;&quot;, &#x2F;&#x2F; 可选 条款勾选框未选中状态图片（仅支持本地图片 建议尺寸 24x24px）(3.2.0+ 版本支持)   </span><br><span class="line">        &quot;checkedImage&quot;:&quot;&quot;, &#x2F;&#x2F; 可选 条款勾选框选中状态图片（仅支持本地图片 建议尺寸24x24px）(3.2.0+ 版本支持)   </span><br><span class="line">        &quot;textColor&quot;: &quot;#BBBBBB&quot;, &#x2F;&#x2F; 文字颜色 默认值：#BBBBBB  </span><br><span class="line">        &quot;termsColor&quot;: &quot;#5496E3&quot;, &#x2F;&#x2F;  协议文字颜色 默认值： #5496E3  </span><br><span class="line">        &quot;prefix&quot;: &quot;我已阅读并同意&quot;, &#x2F;&#x2F; 条款前的文案 默认值：“我已阅读并同意”  </span><br><span class="line">        &quot;suffix&quot;: &quot;并使用本机号码登录&quot;, &#x2F;&#x2F; 条款后的文案 默认值：“并使用本机号码登录”  </span><br><span class="line">        &quot;privacyItems&quot;: [  &#x2F;&#x2F; 自定义协议条款，最大支持2个，需要同时设置url和title. 否则不生效  </span><br><span class="line">            &#123;  </span><br><span class="line">                &quot;url&quot;: &quot;https:&#x2F;&#x2F;&quot;, &#x2F;&#x2F; 点击跳转的协议详情页面  </span><br><span class="line">                &quot;title&quot;: &quot;用户服务协议&quot; &#x2F;&#x2F; 协议名称  </span><br><span class="line">            &#125;  </span><br><span class="line">        ]  </span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;buttons&quot;: &#123;  &#x2F;&#x2F; 自定义页面下方按钮仅全屏模式生效（3.1.14+ 版本支持）</span><br><span class="line">        &quot;iconWidth&quot;: &quot;45px&quot;, &#x2F;&#x2F; 图标宽度（高度等比例缩放） 默认值：45px</span><br><span class="line">        &quot;list&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;provider&quot;: &quot;apple&quot;,</span><br><span class="line">                &quot;iconPath&quot;: &quot;&#x2F;static&#x2F;apple.png&quot; &#x2F;&#x2F; 图标路径仅支持本地图片</span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                &quot;provider&quot;: &quot;weixin&quot;,</span><br><span class="line">                &quot;iconPath&quot;: &quot;&#x2F;static&#x2F;wechat.png&quot; &#x2F;&#x2F; 图标路径仅支持本地图片</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+<p>跟着这样的配置进行自定义修改就好了，其中一些自定义处理大多都是通过错误状态码的，还有一点，由于我的项目已经上线了，得到很多反馈:</p>
+<div style="color:#dc000c;">
+大概率打开这个一键登录弹窗的十分的慢。还有勾选协议按钮如果使用自定义图片的话，会有很大的兼容问题，慎用。
+</div>
+
+
+    </div>
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束&nbsp;<i class="fa fa-paw"></i>&nbsp;感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+    
+    
+    
+        <div class="reward-container">
+  <div>请我吃包辣条吧~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      <div style="display: inline-block;">
+        <img src="/images/weixin.png" alt="蓝眸 微信">
+        <p>微信</p>
+      </div>
+      <div style="display: inline-block;">
+        <img src="/images/zfb.png" alt="蓝眸 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/02/%E6%B5%85%E8%B0%88ES6-%E7%AC%AC%E4%B8%80%E7%AF%87/" rel="prev" title="浅谈ES6(第一篇)">
+      <i class="fa fa-chevron-left"></i> 浅谈ES6(第一篇)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%BC%80%E9%80%9A%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.0.1.</span> <span class="nav-text">1、开通服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BA%E4%BA%91%E5%87%BD%E6%95%B0"><span class="nav-number">2.0.2.</span> <span class="nav-text">2、创建云函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.0.3.</span> <span class="nav-text">3、一键登录的使用</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蓝眸"
+      src="/images/laji02.png">
+  <img src="../images/author_name.png" />
+  <div class="site-description" itemprop="description">各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蓝眸</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+ <canvas id="canvas"></canvas>
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript">
+    var windowWidth = $(window).width();
+  if (windowWidth > 480) {
+    document.write('<script type="text/javascript" src="../js/snow.js"><\/script>');
+  }
+</script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

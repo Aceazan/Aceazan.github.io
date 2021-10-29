@@ -1,0 +1,1142 @@
+<!--
+                   ___====-_  _-====___
+             _--^^^#####//      \\#####^^^--_
+          _-^##########// (    ) \\##########^-_
+         -############//  |\^^/|  \\############-
+       _/############//   (@::@)   \\############\_
+      /#############((     \\//     ))#############\
+     -###############\\    (oo)    //###############-
+    -#################\\  / VV \  //#################-
+   -###################\\/      \//###################-
+  _#/|##########/\######(   /\   )######/\##########|\#_
+  |/ |#/\#/\#/\/  \#/\##\  |  |  /##/\#/  \/\#/\#/\#| \|
+  `  |/  V  V  `   V  \#\| |  | |/#/  V   '  V  V  \|  '
+     `   `  `      `   / | |  | | \   '      '  '   '
+                      (  | |  | |  )
+                     __\ | |  | | /__
+                    (vvv(VVV)(VVV)vvv)
+                         神兽保佑
+                        代码无BUG!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="../css/theme-pace.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shaobro.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="别林小筑">
+<meta property="og:url" content="https://shaobro.github.io/index.html">
+<meta property="og:site_name" content="别林小筑">
+<meta property="og:description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="蓝眸">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://shaobro.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>别林小筑</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+
+    <header class="header header-view" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-cont"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">别林小筑</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">web前端</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i><span>首页</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i><span>Tags</span></a>
+
+  </li>
+        <li class="menu-item menu-item-列表">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i><span>列表</span></a>
+
+  </li>
+        <li class="menu-item menu-item-关于博主">
+
+    <a href="/intro" rel="section"><i class="fa fa-archive fa-fw"></i><span>关于博主</span></a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friend" rel="section"><i class="fa fa-archive fa-fw"></i><span>友情链接</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+<div class="header-weather">
+    <div class="header-weather-cont">
+       <iframe width="350" scrolling="no" height="70" frameborder="0" allowtransparency="true" src="https://i.tianqi.com?c=code&id=37&icon=4&site=12" style="color:#555;"></iframe>
+    </div>
+</div>
+<div class="header-author">
+    <div>
+    <img class="site-author-image" itemprop="image" alt="蓝眸"
+      src="/images/laji02.png">
+    </div>
+    
+  <div class="author-name">蓝眸</div>
+</div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/" class="post-title-link" itemprop="url">uni-app使用一键登录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-09-29 17:34:09" itemprop="dateCreated datePublished" datetime="2021-09-29T17:34:09+08:00">2021-09-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-29 11:43:23" itemprop="dateModified" datetime="2021-10-29T11:43:23+08:00">2021-10-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#8194;&#8194;现在大多app都有一键登录的功能，我们的项目当然也得有，于是去翻了翻<br><a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/univerify">一键登录</a>&#8194;&#8194;官方文档。好家伙，又发现新大陆了。让我们先来看一下dcloud对一件登录的描述吧…</p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>&#8194;&#8194;<a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/univerify">uni一键登录</a>是Dcloud联合个推公司推出的，整合了三大运营商网关认证能力的服务。通过运营商的底层SDK，实现App端无需短信验证码直接获取手机号，也就是很多主流App都提供的一键登录功能。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/29/uni-app%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E7%99%BB%E5%BD%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/03/02/%E6%B5%85%E8%B0%88ES6-%E7%AC%AC%E4%B8%80%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/02/%E6%B5%85%E8%B0%88ES6-%E7%AC%AC%E4%B8%80%E7%AF%87/" class="post-title-link" itemprop="url">浅谈ES6(第一篇)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-02 10:21:42 / Modified: 17:36:11" itemprop="dateCreated datePublished" datetime="2021-03-02T10:21:42+08:00">2021-03-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>ECMAScript 6.0(以下简称ES6) 是 JavaScript 语言的一代标准，已经于2015年6月正式发布了。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。</p>
+<p><img src="/2021/03/02/%E6%B5%85%E8%B0%88ES6-%E7%AC%AC%E4%B8%80%E7%AF%87/bg_01.png" alt="Background" title="峨眉山"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/02/%E6%B5%85%E8%B0%88ES6-%E7%AC%AC%E4%B8%80%E7%AF%87/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/02/23/App%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/23/App%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">App消息推送原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-23 10:13:26" itemprop="dateCreated datePublished" datetime="2021-02-23T10:13:26+08:00">2021-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1丶基本概念"><a href="#1丶基本概念" class="headerlink" title="1丶基本概念"></a>1丶基本概念</h3><p>·目的：在用户打开App时，App主动向用户推送最新消息<br><img src="/2021/02/23/App%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%E5%8E%9F%E7%90%86/bg_01.png" alt="Background" title="原理"></p>
+<p>·基本原理：服务器如何先找到设备、再找到App?<br>每一个设备都有一个自己的设备号，而设备中的app又都有一个唯一的包名。所以服务器只需要找到设备号与包名就可以定位到某个设备的某个应用，而这设备号与包名会一起构成一个标识符，叫做device_token,因此问题就简化为把device_token与消息内容等信息交给服务器，服务器把内容发到唯一的device_token上。</p>
+<p>·作用：功能需要，如：资讯类产品的新闻推送，工具类产品的公告推送等等；活动运营需要，如：电商类产品的促销活动；召回用户/提高活跃度等等。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/23/App%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%E5%8E%9F%E7%90%86/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/02/08/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/08/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87/" class="post-title-link" itemprop="url">前端面试第一篇</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-08 10:50:13" itemprop="dateCreated datePublished" datetime="2021-02-08T10:50:13+08:00">2021-02-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、谈谈你对MVVM开发模式的理解"><a href="#一、谈谈你对MVVM开发模式的理解" class="headerlink" title="一、谈谈你对MVVM开发模式的理解"></a>一、谈谈你对MVVM开发模式的理解</h2><p>MVVM分为Model、View、ViewModel三者。<br><strong>Model</strong>代表数据模型，数据和业务逻辑都在Model层中定义；<br><strong>View</strong>代表ui视图，负责数据的展示；<br><strong>ViewModel</strong>负责监听<strong>Model</strong>中数据的改变并且控制视图的更新，处理用户交互操作；<br><strong>Model</strong>和<strong>View</strong>并无直接关联，而是通过<strong>ViewModel</strong>来进行联系的，<strong>Model</strong>和<strong>ViewModel</strong>之间有着双向数据绑定的联系。因此当<strong>Model</strong>的数据改变时会触发<strong>View</strong>层的刷新，<strong>View</strong>中由于用户交互操作而改变的数据也会在<strong>Model</strong>中同步。<br>这种模式实现了<strong>Model</strong>和<strong>View</strong>的数据自动同步，因此开发者只需要专注对数据的维护操作即可，而不是需要自己操作dom。</p>
+<h2 id="二、vue有哪些指令？"><a href="#二、vue有哪些指令？" class="headerlink" title="二、vue有哪些指令？"></a>二、vue有哪些指令？</h2><p>v-bind、v-model、v-html、v-for、v-show、v-if</p>
+<h2 id="三、v-if和v-show-有什么区别？"><a href="#三、v-if和v-show-有什么区别？" class="headerlink" title="三、v-if和v-show 有什么区别？"></a>三、v-if和v-show 有什么区别？</h2><p>v-show仅仅控制元素的显示方式，将display属性在block和none来回切换；而v-if会控制这个DOM节点的是否存在。当我们需要频繁切换某个元素的显示/隐藏时，使用v-show会更加节省性能上的开销；当只需要一次显示或隐藏时，使用v-if更加合理。</p>
+<h2 id="四、简述Vue的响应式原理"><a href="#四、简述Vue的响应式原理" class="headerlink" title="四、简述Vue的响应式原理"></a>四、简述Vue的响应式原理</h2><p>当一个Vue实例创建时，vue会遍历data选项的属性，用Object.defineProperty将它们转为getter/setter并且在内部追踪相关技术依赖，在属性被访问和修改时通知变化。<br>每个组件实例都有相应的watcher程序实例，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的setter被调用时，会通知watcher重新计算，从而致使它关联的组件得以更新。</p>
+<h2 id="五、Vue中如何在组件内部实现一个双向数据绑定？"><a href="#五、Vue中如何在组件内部实现一个双向数据绑定？" class="headerlink" title="五、Vue中如何在组件内部实现一个双向数据绑定？"></a>五、Vue中如何在组件内部实现一个双向数据绑定？</h2><p>假设有一个输入框组件，用户输入时，同步父组件页面中的数据<br>具体思路：父组件通过props传值给子组件，子组件通过$emit来通知父组件修改相应的props的值，具体实现如下：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &quot;vue&quot;</span><br><span class="line"></span><br><span class="line">const component &#x3D; &#123;</span><br><span class="line">    props: [&#39;value&#39;],</span><br><span class="line">    template:&#96;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;input type&#x3D;&#39;text&#39; @input&#x3D;&#39;handleInput&#39; :value&#x3D;&#39;value&#39;&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &#96;,</span><br><span class="line">    data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        handle</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/01/25/JavaScript%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/25/JavaScript%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="post-title-link" itemprop="url">JavaScript深浅拷贝</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-25 11:29:52" itemprop="dateCreated datePublished" datetime="2021-01-25T11:29:52+08:00">2021-01-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/2021/01/25/JavaScript%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/bg_01.png" alt="峨眉山" title="峨眉山"></p>
+<p><font style="color:#999999;font-size:14px;">摄影：蓝眸&#8194;&#8194;峨眉山&#8194;&#8194;2020-01-17</font></p>
+<h3 id="js数据类型"><a href="#js数据类型" class="headerlink" title="js数据类型:"></a>js数据类型:</h3><p>JavaScript的数据类型有：数值类型、字符串类型、布尔类型、null、undefined、对象(数组、正则、日期、函数)。大致分为两种：基本数据类型和引用数据类型。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/25/JavaScript%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">JavaScript中this的用法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-22 14:46:35" itemprop="dateCreated datePublished" datetime="2021-01-22T14:46:35+08:00">2021-01-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/bg_01.png" alt="峨眉山" title="峨眉山"></p>
+<p><font style="color:#999999;font-size:14px;">摄影：蓝眸&#8194;&#8194;峨眉山&#8194;&#8194;2020-01-17</font></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>this是javascript中的一个关键字。<br>它是函数运行时，在函数体内部自动生成的一个对象，当然，只能在函数体内部使用。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/22/JavaScript%E4%B8%ADthis%E7%9A%84%E7%94%A8%E6%B3%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/01/14/JavaScript%E6%95%B0%E7%BB%84API%E5%85%A8%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/14/JavaScript%E6%95%B0%E7%BB%84API%E5%85%A8%E9%9B%86/" class="post-title-link" itemprop="url">JavaScript数组API全集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-14 09:47:48" itemprop="dateCreated datePublished" datetime="2021-01-14T09:47:48+08:00">2021-01-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#8194;&#8194;JavaScript提供了丰富且强大的数组API，这使得前端开发更为便捷。</p>
+<h4 id="修改原数组的API"><a href="#修改原数组的API" class="headerlink" title="修改原数组的API"></a>修改原数组的API</h4><p>&#8194;&#8194;方法：<font style="color:#3C8DC4;">pop()</font><br>&#8194;&#8194;描述：弹出数组最后一个元素,并返回这个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [ 1, 2, 3, 4, 5, 6 ],</span><br><span class="line">    result &#x3D; arr.pop();</span><br><span class="line"></span><br><span class="line">    console.log( arr );    &#x2F;&#x2F; [ 1, 2, 3, 4, 5]</span><br><span class="line">    console.log( result );    &#x2F;&#x2F; 6</span><br></pre></td></tr></table></figure>
+
+<p>&#8194;&#8194;方法：<font style="color:#3C8DC4;">push()</font><br>&#8194;&#8194;描述：添加一个或多个元素到数组末尾，并返回新的长度。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/14/JavaScript%E6%95%B0%E7%BB%84API%E5%85%A8%E9%9B%86/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/01/13/JavaScript%E5%AD%97%E7%AC%A6%E4%B8%B2API%E5%85%A8%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/13/JavaScript%E5%AD%97%E7%AC%A6%E4%B8%B2API%E5%85%A8%E9%9B%86/" class="post-title-link" itemprop="url">JavaScript字符串API全集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-13 11:02:50" itemprop="dateCreated datePublished" datetime="2021-01-13T11:02:50+08:00">2021-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#8194;&#8194;一位前端开发工程师能走多远,原生JS的基础是必不可少的技能之一。趁着空闲时间把字符串和数组的API归下总。</p>
+<h3 id="JavaScript-字符串"><a href="#JavaScript-字符串" class="headerlink" title="JavaScript 字符串"></a><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-strings.html">JavaScript 字符串</a></h3><p>&#8194;&#8194;方法：<font style="color:#3C8DC4;">charAt( index )</font><br>&#8194;&#8194;描述：返回指定索引位置的字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str &#x3D; &quot;lanmou&quot;;</span><br><span class="line">console.log(str.charAt(3));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 因为下标是从零开始排列的，所以这里的输出是  m</span><br><span class="line">&#x2F;&#x2F; m</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/13/JavaScript%E5%AD%97%E7%AC%A6%E4%B8%B2API%E5%85%A8%E9%9B%86/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2021/01/09/uni-app%E6%89%93%E5%8C%85ipa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/09/uni-app%E6%89%93%E5%8C%85ipa/" class="post-title-link" itemprop="url">uni-app打包ipa</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-09 15:37:27" itemprop="dateCreated datePublished" datetime="2021-01-09T15:37:27+08:00">2021-01-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#8194;&#8194;uni-app是<a target="_blank" rel="noopener" href="https://www.dcloud.io/">DCLoud</a>推出的一款基于<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">Vue.js</a>开发所有前端应用的框架，由于它具有”一套代码,多端部署”的优势，现已坐拥500w+开发者用户。公司上一个项目是做一个APP。所以我又巩固了一下<a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/">uni-app</a>的知识，今天向大家分享一下uni-app打包ipa是怎么一个流程。</p>
+<p>附言:苹果手机对app的渠道管控非常严格,非App Store应用商店下载安装的app应用不能正常使用。</p>
+<p>假设我们现在有一个需要打包成ipa的项目，那么我们则需要申请ios证书和描述文件，其中证书又分为两种:</p>
+<table>
+<thead>
+<tr>
+<th>证书类型</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发(Development)证书和描述文件</td>
+<td>用于开发测试，在 HBuilderX 中打包后可在真机环境通过<a target="_blank" rel="noopener" href="https://ask.dcloud.net.cn/article/143">Safari调试</a></td>
+</tr>
+<tr>
+<td>发布(Distribution)证书和描述文件</td>
+<td>用于提交 AppStore，在 HBuilderX 中提交云打包后提交到 AppStore 审核发布</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/09/uni-app%E6%89%93%E5%8C%85ipa/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2020/12/29/TypeScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/29/TypeScript/" class="post-title-link" itemprop="url">TypeScript</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-29 15:25:56" itemprop="dateCreated datePublished" datetime="2020-12-29T15:25:56+08:00">2020-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/2020/12/29/TypeScript/bg_01.png" alt="Background" title="TypeScript"></p>
+<h4 id="JavaScript的超集"><a href="#JavaScript的超集" class="headerlink" title="JavaScript的超集"></a><div style="color:#FFA700;text-align:center;">JavaScript的超集</div></h4><div style="text-align:center;">TypeScript是JavaScript的超集，它可以编译成纯JavaScript。</div>
+<div style="text-align:center;">TypeScript可以在任何浏览器、任何计算机和操作系统上运行，并且是开源的。</div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/29/TypeScript/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    <div>
+  
+</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蓝眸"
+      src="/images/laji02.png">
+  <img src="../images/author_name.png" />
+  <div class="site-description" itemprop="description">各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蓝眸</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+ <canvas id="canvas"></canvas>
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript">
+    var windowWidth = $(window).width();
+  if (windowWidth > 480) {
+    document.write('<script type="text/javascript" src="../js/snow.js"><\/script>');
+  }
+</script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

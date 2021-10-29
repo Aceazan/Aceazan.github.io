@@ -1,0 +1,496 @@
+<!--
+                   ___====-_  _-====___
+             _--^^^#####//      \\#####^^^--_
+          _-^##########// (    ) \\##########^-_
+         -############//  |\^^/|  \\############-
+       _/############//   (@::@)   \\############\_
+      /#############((     \\//     ))#############\
+     -###############\\    (oo)    //###############-
+    -#################\\  / VV \  //#################-
+   -###################\\/      \//###################-
+  _#/|##########/\######(   /\   )######/\##########|\#_
+  |/ |#/\#/\#/\/  \#/\##\  |  |  /##/\#/  \/\#/\#/\#| \|
+  `  |/  V  V  `   V  \#\| |  | |/#/  V   '  V  V  \|  '
+     `   `  `      `   / | |  | | \   '      '  '   '
+                      (  | |  | |  )
+                     __\ | |  | | /__
+                    (vvv(VVV)(VVV)vvv)
+                         神兽保佑
+                        代码无BUG!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="../css/theme-pace.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shaobro.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言 闭包(closure)一直是Javascript语言中的一个难点,但也是它的特色,很多高级应用都要依靠闭包实现。  要理解闭包,首先必须理解Javascript特殊的变量作用域。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript闭包">
+<meta property="og:url" content="https://shaobro.github.io/2020/12/23/Javascript%E9%97%AD%E5%8C%85/index.html">
+<meta property="og:site_name" content="别林小筑">
+<meta property="og:description" content="前言 闭包(closure)一直是Javascript语言中的一个难点,但也是它的特色,很多高级应用都要依靠闭包实现。  要理解闭包,首先必须理解Javascript特殊的变量作用域。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://shaobro.github.io/2020/12/23/Javascript%E9%97%AD%E5%8C%85/bg_01.png">
+<meta property="article:published_time" content="2020-12-23T07:47:21.000Z">
+<meta property="article:modified_time" content="2021-03-02T09:36:11.000Z">
+<meta property="article:author" content="蓝眸">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaobro.github.io/2020/12/23/Javascript%E9%97%AD%E5%8C%85/bg_01.png">
+
+<link rel="canonical" href="https://shaobro.github.io/2020/12/23/Javascript%E9%97%AD%E5%8C%85/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Javascript闭包 | 别林小筑</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+
+    <header class="header header-view" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-cont"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">别林小筑</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">web前端</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i><span>首页</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i><span>Tags</span></a>
+
+  </li>
+        <li class="menu-item menu-item-列表">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i><span>列表</span></a>
+
+  </li>
+        <li class="menu-item menu-item-关于博主">
+
+    <a href="/intro" rel="section"><i class="fa fa-archive fa-fw"></i><span>关于博主</span></a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friend" rel="section"><i class="fa fa-archive fa-fw"></i><span>友情链接</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+<div class="header-weather">
+    <div class="header-weather-cont">
+       <iframe width="350" scrolling="no" height="70" frameborder="0" allowtransparency="true" src="https://i.tianqi.com?c=code&id=37&icon=4&site=12" style="color:#555;"></iframe>
+    </div>
+</div>
+<div class="header-author">
+    <div>
+    <img class="site-author-image" itemprop="image" alt="蓝眸"
+      src="/images/laji02.png">
+    </div>
+    
+  <div class="author-name">蓝眸</div>
+</div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://shaobro.github.io/2020/12/23/Javascript%E9%97%AD%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/laji02.png">
+      <meta itemprop="name" content="蓝眸">
+      <meta itemprop="description" content="各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="别林小筑">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript闭包
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-23 15:47:21" itemprop="dateCreated datePublished" datetime="2020-12-23T15:47:21+08:00">2020-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-02 17:36:11" itemprop="dateModified" datetime="2021-03-02T17:36:11+08:00">2021-03-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p> 闭包(closure)一直是Javascript语言中的一个难点,但也是它的特色,很多高级应用都要依靠闭包实现。</p>
+<p> 要理解闭包,首先必须理解Javascript特殊的变量作用域。<br> <img src="/2020/12/23/Javascript%E9%97%AD%E5%8C%85/bg_01.png" alt="Background" title="闭包"></p>
+<a id="more"></a>
+<h5 id="Number-One-变量的作用域"><a href="#Number-One-变量的作用域" class="headerlink" title="Number One 变量的作用域"></a>Number One 变量的作用域</h5><p> 变量的作用域无非就两种:全局作用域和局部作用域。<br> Javascript语言的特殊之处,就在于函数内部可以直接读取全局变量。</p>
+ <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 123;</span><br><span class="line">function f1()&#123;</span><br><span class="line">    alert(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1(); &#x2F;&#x2F; 123</span><br></pre></td></tr></table></figure></div>
+
+<p> 当然,在函数外部自然无法读取函数内部的局部变量。<br> <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">    var a &#x3D; 456;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(a); &#x2F;&#x2F; Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></div></p>
+<p> 还有一个地方需要注意,函数内部声明变量时,一定要使用var关键字。如果不用的话,你实际上就声明了一个全局变量!<br> <font style="color:#dc000c;">附:(这个条件只在非”严格模式”下成立,严格模式下由于a未进行声明,故会报错。)</font><br> <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">    a &#x3D; 123;</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line">alert(a); &#x2F;&#x2F; 123</span><br></pre></td></tr></table></figure></div></p>
+<h5 id="Number-Two-如何从外部读取局部变量"><a href="#Number-Two-如何从外部读取局部变量" class="headerlink" title="Number Two 如何从外部读取局部变量"></a>Number Two 如何从外部读取局部变量</h5><p> 处于种种原因,我们有时需要得到函数内部的变量。但是,前面已经说过,正常情况下,这是无法实现的,只有变通方法才能实现。<br> 那就是在函数内部,再定义一个函数。<br> <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">    var a &#x3D; 123;</span><br><span class="line">    function f2()&#123;</span><br><span class="line">        alert(a); &#x2F;&#x2F;123</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
+<p> 在上面的代码中,函数f2就被包裹在函数f1内部,这时f1内部的所有局部变量,对f2都是可见的。但反过来就不行,f2内部的变量对f1函数是不可见的。这就是Javascript语言独有的”链式作用域”结构(chain scope),子类会一级一级地向上寻找所有父类的变量。所以,父类的所有变量对子类都是可见的,反之则不成立。</p>
+<p> 既然f2可以读取f1函数中的局部变量,那么只要把f2作为返回值,我们不就可以在f1外部读取它的内部变量了吗?</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">    var a &#x3D; 1;</span><br><span class="line">    function f2()&#123;</span><br><span class="line">        alert(a);</span><br><span class="line">    &#125;</span><br><span class="line">    return f2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var result &#x3D; f1();</span><br><span class="line">result(); &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="Number-Three-闭包的概念"><a href="#Number-Three-闭包的概念" class="headerlink" title="Number Three 闭包的概念"></a>Number Three 闭包的概念</h5><p>上一段代码中的f2函数,就是一个闭包。<br>各种专业文献上的”闭包”(closure)定义的非常抽象,很难看懂。个人理解闭包就是能够读取其它函数内部变量的函数。<br>由于在Javascript语言中,只有函数内部的子函数才能读取局部变量,因此可以把闭包理解成”<font style="color:#dc000c;">定义在一个函数内部的函数</font>“。<br>所以，在本质上，闭包就是将函数内部和外部连接起来的一座桥梁。</p>
+<h5 id="Number-Four-闭包的用途"><a href="#Number-Four-闭包的用途" class="headerlink" title="Number Four 闭包的用途"></a>Number Four 闭包的用途</h5><p>闭包可以用在许多地方,它的最大用处有两个,一个是前面提到的可以读取函数内部的变量,另一个就是让这些变量的值始终保持在内存中。怎么理解这句话呢?请看代码:</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">　　　　var a &#x3D; 123;</span><br><span class="line">　　　　aAdd &#x3D; function()&#123; a +&#x3D; 1 &#125;;</span><br><span class="line">　　　　function f2()&#123;</span><br><span class="line">　　　　　　alert(a);</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　　　return f2;</span><br><span class="line">　　&#125;</span><br><span class="line">var result &#x3D; f1();</span><br><span class="line">result(); &#x2F;&#x2F; 123</span><br><span class="line">aAdd();</span><br><span class="line">result(); &#x2F;&#x2F; 124</span><br></pre></td></tr></table></figure></div>
+<p>在这段代码中,result实际上就是闭包f2函数。它一共运行了两次,第一次的值是123,第二次的值是124。这证明了,函数f1的局部变量a一直保存在内存中,并没有在f1调用后被自动清除。</p>
+<p>为什么会这样呢?原因就在于f1是f2的父函数,而f2被赋给了一个全局变量,这导致f2始终在内存中,而f2的存在依赖于f1,因此f1也始终在内存中,不会在调用后,被垃圾回收机制(garbage collection)回收。</p>
+<p>这段代码中另一个值得注意的地方,就是”aAdd = function (){ n += 1 }”这一行,首先在aAdd前面没有使用var关键字,因此aAdd是一个全局变量,而不是局部变量。其次aAdd的值是一个匿名函数(anonymous function),而这个匿名函数本身也是一个闭包,所以aAdd相当于是一个setter,可以在函数外部对函数内部的局部变量进行操作。</p>
+<h5 id="Number-Five-使用闭包的注意点"><a href="#Number-Five-使用闭包的注意点" class="headerlink" title="Number Five 使用闭包的注意点"></a>Number Five 使用闭包的注意点</h5><p>由于闭包会使得函数中的变量都被保存在内存中,内存消耗很大,所以不能滥用闭包,否则会造成网页的性能问题,在IE中可能导致内存泄漏。解决办法是,在退出函数之前,将不使用的局部变量全部删除。<br>闭包会在父函数外部,改变父函数内部的值。所以,如果你把父函数当做对象(Object)使用,把闭包当做它的公共方法(Public Method),把内部变量当做它的私有属性(private value),这时一定要小心,不要随便改变父函数内部变量的值。</p>
+
+    </div>
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束&nbsp;<i class="fa fa-paw"></i>&nbsp;感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+    
+    
+    
+        <div class="reward-container">
+  <div>请我吃包辣条吧~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      <div style="display: inline-block;">
+        <img src="/images/weixin.png" alt="蓝眸 微信">
+        <p>微信</p>
+      </div>
+      <div style="display: inline-block;">
+        <img src="/images/zfb.png" alt="蓝眸 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/16/asynchronouspgm/" rel="prev" title="Javascript异步编程">
+      <i class="fa fa-chevron-left"></i> Javascript异步编程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/29/TypeScript/" rel="next" title="TypeScript">
+      TypeScript <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Number-One-%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Number One 变量的作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Number-Two-%E5%A6%82%E4%BD%95%E4%BB%8E%E5%A4%96%E9%83%A8%E8%AF%BB%E5%8F%96%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">Number Two 如何从外部读取局部变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Number-Three-%E9%97%AD%E5%8C%85%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Number Three 闭包的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Number-Four-%E9%97%AD%E5%8C%85%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Number Four 闭包的用途</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Number-Five-%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Number Five 使用闭包的注意点</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蓝眸"
+      src="/images/laji02.png">
+  <img src="../images/author_name.png" />
+  <div class="site-description" itemprop="description">各类技术博客五花八门,但大多数都会误导人。本网站只积累权威博客,坚持真理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蓝眸</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+ <canvas id="canvas"></canvas>
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript">
+    var windowWidth = $(window).width();
+  if (windowWidth > 480) {
+    document.write('<script type="text/javascript" src="../js/snow.js"><\/script>');
+  }
+</script>
+<script src="/live2d-widget/autoload.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
